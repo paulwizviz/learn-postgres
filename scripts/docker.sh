@@ -18,7 +18,7 @@ export NETWORK=learn-postgress_psql
 COMMAND="$1"
 SUBCOMMAND="$2"
 
-function compose(){
+function single(){
     local cmd=$1
     case $cmd in
         "start")
@@ -27,17 +27,23 @@ function compose(){
         "stop")
             docker compose -f ./deployments/compose/single/docker-compose.yaml down
             ;;
+        "clean")
+            docker compose -f ./deployments/compose/single/docker-compose.yaml down
+            if [ -d ./deployments/compose/single/dbfiles ]; then
+                rm -rf ./deployments/compose/single/dbfiles
+            fi
+            ;;
         *)
-            echo "Usage $0 compose [start|stop]"
+            echo "Usage $0 single [clean | start | stop]"
             ;;
     esac
 }
 
 case $COMMAND in
-    "compose")
-        compose $SUBCOMMAND
+    "single")
+        single $SUBCOMMAND
         ;;
     *)
-        echo "Usage: $0 [compose]"
+        echo "Usage: $0 [single]"
         ;;
 esac
