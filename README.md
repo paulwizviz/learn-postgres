@@ -2,8 +2,6 @@
 
 This repository contains a series of references to working examples and educational materials. It includes examples of Postgres DB deployments using Docker and k8s.
 
-The materials in this repository were shared by these [CONTRIBUTORS](https://github.com/paulwizviz/learn-ai/blob/main/CONTRIBUTORS).
-
 ## Deployments
 
 ### Docker Compose
